@@ -12,6 +12,9 @@ import HistoryScreen from './pages/HistoryScreen';
 import DetailScreen from './pages/DetailScreen';
 import AboutScreen from './pages/AboutScreen';
 
+// ✅ Tambahan import LocationScreen
+import LocationScreen from './pages/LocationScreen';
+
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -51,14 +54,25 @@ function AppTabs() {
           tabBarIcon: ({ color }) => <MaterialIcons name="history" size={24} color={color} />,
         }}
       />
+
+      {/* ✅ Tambahan tab Lokasi */}
       <Tab.Screen
-  name="AboutTab"
-  component={AboutScreen}
-  options={{
-    tabBarLabel: 'Tentang',
-    tabBarIcon: ({ color }) => <MaterialIcons name="person" size={24} color={color} />,
-  }}
-/>
+        name="LocationTab"
+        component={LocationScreen}
+        options={{
+          tabBarLabel: 'Lokasi',
+          tabBarIcon: ({ color }) => <MaterialIcons name="location-on" size={24} color={color} />,
+        }}
+      />
+
+      <Tab.Screen
+        name="AboutTab"
+        component={AboutScreen}
+        options={{
+          tabBarLabel: 'Tentang',
+          tabBarIcon: ({ color }) => <MaterialIcons name="person" size={24} color={color} />,
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -75,7 +89,6 @@ function AuthStack() {
   );
 }
 
-// Logika navigasi berdasarkan status login
 function MainApp() {
   const { userData, loading } = useContext(AuthContext);
 
